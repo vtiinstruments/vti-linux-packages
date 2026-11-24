@@ -1,3 +1,21 @@
+Package: vti-libbreadboard
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 927
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libBreadboard_4.0.0-1_amd64.deb
+Size: 613788
+MD5sum: 39eefddab0e1fc94a9e7049c86a1f124
+SHA1: ac306e3b599e3f07423b0126fd5fbc687ef199fb
+SHA256: b46e014bdd3c807edae8b9b764a4f2a9b60dff0bbf469c3f05b9adb3b28c9e00
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Breadboard
+License: Commercial
+Vendor: VTI Instruments Corporation
+
 Package: vti-libcommon
 Version: 1.19.0.145
 Architecture: amd64
@@ -12,6 +30,24 @@ Section: Development/Libraries
 Priority: optional
 Homepage: http://www.vtiinstruments.com
 Description: VTEX Common files for Linux drivers.
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libcomparator
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 1192
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libcomparator_4.0.0-1_amd64.deb
+Size: 769206
+MD5sum: 7a8da02a25b5509819038254e890b253
+SHA1: 5208a15ec764ef3dc76bcc60e006f4da5d93b19a
+SHA256: 9ea9f6addbd492656e8f647f3cb31e7cb0f6bb86cad26084cec04a6b1e5faefc
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Comparator
 License: Commercial
 Vendor: VTI Instruments Corporation
 
@@ -51,6 +87,24 @@ Description: VTEX Device Driver for DIO
 License: Commercial
 Vendor: VTI Instruments Corporation
 
+Package: vti-libdmm
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 1563
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libdmm_4.0.0-1_amd64.deb
+Size: 1078632
+MD5sum: 7555ae999b6f0aa1eb64db559fe9102f
+SHA1: 89e69bca07ee1f10ce809b933dae38e26729c1d8
+SHA256: 93c68d929c84ed30b6377c96fb7b85e78bbfe2c4a561e2f9293603b1d8eaa69c
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for DMM
+License: Commercial
+Vendor: VTI Instruments Corporation
+
 Package: vti-libdsa
 Version: 1.16.6.145
 Architecture: amd64
@@ -66,6 +120,24 @@ Section: Development/Libraries
 Priority: optional
 Homepage: http://www.vtiinstruments.com
 Description: VTEX Device Driver for DSA
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libmultifunction
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 1327
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libmultifunction_4.0.0-1_amd64.deb
+Size: 858684
+MD5sum: 6f94616de77df7c42ed0ffb2f1cca602
+SHA1: 134d51b0ae804d1c7bb06c05259ca20339bb3aa8
+SHA256: dffc506e658e9522acb372d5e30060b9b0613ee30ce7d75d43453a80c5a604a6
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Multifunction
 License: Commercial
 Vendor: VTI Instruments Corporation
 
@@ -87,6 +159,42 @@ Description: VTEX Device Driver for SentinelEX systems
 License: Commercial
 Vendor: VTI Instruments Corporation
 
+Package: vti-librtdsimulator
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 1095
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libRTDSimulator_4.0.0-1_amd64.deb
+Size: 722112
+MD5sum: 24fb40b39b93ef7408b57f2dda215984
+SHA1: aa205521e3f2b0c156d480c5958e4432c26c1aa3
+SHA256: f9a151fe3491e29e9fa81b557d460143feb13e917b584c86eae0a8123485f6e3
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for RTD Simulator
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libscanner
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 3047
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libscanner_4.0.0-1_amd64.deb
+Size: 1569686
+MD5sum: d0a8bd42997621c4c787e11a7f8372f3
+SHA1: 760ffb31525d7ff50c8c303f45af2bc785485708
+SHA256: 5f0361f19dd0afac38e331aebbbbf7c7322bc4a2ff19ae35ed9a69bdd57d250e
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Scanner
+License: Commercial
+Vendor: VTI Instruments Corporation
+
 Package: vti-libswitch
 Version: 4.4.1.145
 Architecture: amd64
@@ -105,6 +213,24 @@ Description: VTEX Device Driver for Switches
 License: Commercial
 Vendor: VTI Instruments Corporation
 
+Package: vti-libsystem
+Version: 4.0.0-1
+Architecture: amd64
+Maintainer: <@026dea7e49e8>
+Installed-Size: 1864
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libsystem_4.0.0-1_amd64.deb
+Size: 1190290
+MD5sum: 8ec5a6003069e12e208ed2c9a725c8a9
+SHA1: f8c6084d15463f0edf4dc6f99f40e0ba092e6160
+SHA256: 7ef5bae6bf321545b6179b28d73a4b10ff03efb01611676503a725f12c380e1b
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Lxisync
+License: Commercial
+Vendor: VTI Instruments Corporation
+
 Package: vti-libvarres
 Version: 4.3.0.145
 Architecture: amd64
@@ -120,6 +246,24 @@ Section: Development/Libraries
 Priority: optional
 Homepage: http://www.vtiinstruments.com
 Description: VTEX Device Driver for VarRes
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libvtex-common
+Version: 4.0.0-1
+Architecture: all
+Maintainer: <@026dea7e49e8>
+Installed-Size: 106
+Filename: pool/main/vti-libvtex-common_4.0.0-1_all.deb
+Size: 19498
+MD5sum: bac94e4e4785b3e67cc1494bf8bdab71
+SHA1: 2eaa2fcda068d76ba64b7786860d98628fcd5410
+SHA256: 66546e8e68ab4251c5e4b1dc6c891723c58b530f5b5d9679c1dfa1c9221f4023
+Section: default
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://example.com/no-uri-given
+Description: VTEX Common files for Linux drivers.
 License: Commercial
 Vendor: VTI Instruments Corporation
 

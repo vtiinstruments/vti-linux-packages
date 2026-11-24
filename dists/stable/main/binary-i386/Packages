@@ -1,0 +1,144 @@
+Package: vti-libbreadboard
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 904
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libBreadboard_4.0.0-1_i386.deb
+Size: 615736
+MD5sum: 1e0dac64bf2e7bc2b743733927323f82
+SHA1: bea25b30575da792bddd4d3d357571de06dc5403
+SHA256: f0aa5577e948c5a8c9f57f9b95d28674501496743c0421fea35e7b01648ecf2d
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Breadboard
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libcomparator
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 1175
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libcomparator_4.0.0-1_i386.deb
+Size: 774064
+MD5sum: fe9e016ba5bfea067f7e335f6d6de01c
+SHA1: fa2bdf27948fd209ae28d6d9f162a2874a024aa2
+SHA256: c02bd34115d0027ded8f3645ddebad1eb2572219946dcd85b7e555637f2483d7
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Comparator
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libdmm
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 1544
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libdmm_4.0.0-1_i386.deb
+Size: 1083492
+MD5sum: 8fe4c2794ea2b85b146c4a898377d69e
+SHA1: 56696a3f521cbf7d7ace60ffb646538a4dcc7a15
+SHA256: 7d4de3c6765697b67be6750424872904a8f2454bf5ceff868e888ff8a4b3d882
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for DMM
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libmultifunction
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 1310
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libmultifunction_4.0.0-1_i386.deb
+Size: 865588
+MD5sum: 5fce08709ac59ebf7d1bfdf5d6b4db7c
+SHA1: b5e561464b6481af903af8946853c7eb8e5ee6b4
+SHA256: c84b6a1f0b868fda800ba972189f22ac5f309b3c45a0cd71e122b79969c56848
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Multifunction
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-librtdsimulator
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 1079
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libRTDSimulator_4.0.0-1_i386.deb
+Size: 726364
+MD5sum: e2d7dc3c94941b3d7ae10dd831915706
+SHA1: 46ef158e656a540b3041d5d3c93bcebac79a6eb3
+SHA256: d9af6c91c289748b55c77f57cfe834192e82c8abac18397294a881dbb547503d
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for RTD Simulator
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libscanner
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 3024
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libscanner_4.0.0-1_i386.deb
+Size: 1585830
+MD5sum: 51214741e551752c248bd93377de0428
+SHA1: fff81fa4eb70160eec4d2325323a49e8ef8e17b0
+SHA256: c60b1c5669c952f8cc49333d2c903baf51d72b78a02cb5f4964cdd90f442511b
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Scanner
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libsystem
+Version: 4.0.0-1
+Architecture: i386
+Maintainer: <@24805d621592>
+Installed-Size: 1833
+Depends: vti-libvtex-common
+Filename: pool/main/vti-libsystem_4.0.0-1_i386.deb
+Size: 1191302
+MD5sum: d7141daf7b61fcd7a09dcfb4c56f7b3b
+SHA1: 00507ee0374e083cc3c082afa457a5f33e5c2655
+SHA256: 0a3fe8a7380444d5fb7a606f693b3e59a784c8e16c64ea94e7e312982bbffe1a
+Section: default
+Priority: optional
+Homepage: http://example.com/no-uri-given
+Description: VTEX Device Driver for Lxisync
+License: Commercial
+Vendor: VTI Instruments Corporation
+
+Package: vti-libvtex-common
+Version: 4.0.0-1
+Architecture: all
+Maintainer: <@026dea7e49e8>
+Installed-Size: 106
+Filename: pool/main/vti-libvtex-common_4.0.0-1_all.deb
+Size: 19498
+MD5sum: bac94e4e4785b3e67cc1494bf8bdab71
+SHA1: 2eaa2fcda068d76ba64b7786860d98628fcd5410
+SHA256: 66546e8e68ab4251c5e4b1dc6c891723c58b530f5b5d9679c1dfa1c9221f4023
+Section: default
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://example.com/no-uri-given
+Description: VTEX Common files for Linux drivers.
+License: Commercial
+Vendor: VTI Instruments Corporation
+
