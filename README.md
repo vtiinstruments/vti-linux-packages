@@ -5,9 +5,8 @@ Product source remains in its source repository; this repository contains
 only published package files, repository metadata, public signing keys, and
 the automation that publishes them.
 
-The initial package is the VTEX10xxA PnP driver for amd64/i386 DEB and
-x86_64/i686 RPM systems. The repository layout supports adding more packages
-and architectures.
+The repository includes VTEX10xxA PnP and libVTEX driver packages for
+amd64/i386 DEB and x86_64/i686 RPM systems.
 
 ## Install
 
@@ -31,6 +30,9 @@ sudo apt update
 sudo apt install vtex10xxa-pnp
 ```
 
+For libVTEX, install a driver such as `sudo apt install vti-libscanner`.
+Its required `vti-libvtex-common` headers are installed automatically.
+
 APT verifies the signed repository metadata. The published DEB packages also
 carry `dpkg-sig` signatures. Install a 32-bit driver alongside the 64-bit
 driver with:
@@ -50,6 +52,8 @@ sudo curl -fsSL https://vtiinstruments.github.io/vti-ppa/vti.repo \
 sudo dnf install vtex10xxa-pnp
 ```
 
+For libVTEX, install a driver such as `sudo dnf install vti-libscanner`.
+
 The RPM packages and repository metadata are signed and verified by DNF.
 Install the 32-bit variant alongside x86_64 with:
 
@@ -61,10 +65,13 @@ Normal `apt upgrade` and `dnf upgrade` operations install later releases.
 
 ## Compatibility
 
-The driver packages are built on Debian 12 and target Ubuntu 22.04/24.04,
+The VTEX10xxA PnP driver packages are built on Debian 12 and target Ubuntu 22.04/24.04,
 Debian 12, RHEL/Rocky/AlmaLinux 9, and current Fedora releases. The Linux
 Tauri front panel is not included because WebKitGTK 4.1 is not available on
 all supported systems.
+
+libVTEX packages are built on Ubuntu 22.04 and verified using Ubuntu and
+AlmaLinux 9 containers for both architectures.
 
 ## Publishing
 
@@ -85,6 +92,13 @@ token for each release:
 
 - `VTI_PPA_APP_ID`: the GitHub App ID.
 - `VTI_PPA_APP_PRIVATE_KEY`: the GitHub App private key in PEM format.
+
+The private `nextgen-libVTEX` source repository uses the same App secrets.
+Publishing a non-prerelease GitHub release tagged `vMAJOR.MINOR.BUILD` builds
+and verifies the packages, then uploads them to a `libvtex-vMAJOR.MINOR.BUILD`
+draft release here. The namespaced tag prevents collisions with other products.
+The publishing workflow validates and signs the full libVTEX package set before
+updating the repositories. Prereleases and failed builds are not published.
 
 Enable GitHub Pages for this repository from the `gh-pages` branch, root
 directory. Do not commit any private signing or GitHub App keys.

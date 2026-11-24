@@ -14,7 +14,7 @@ repo=${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}
 signing_key=${VTI_PACKAGE_SIGNING_KEY:?VTI_PACKAGE_SIGNING_KEY is required}
 passphrase=${VTI_PACKAGE_SIGNING_PASSPHRASE:?VTI_PACKAGE_SIGNING_PASSPHRASE is required}
 
-if [[ ! $tag =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+if [[ ! $tag =~ ^(v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
@@ -28,6 +28,50 @@ done
 mapfile -t debs < <(find "$incoming" -maxdepth 1 -type f -name '*.deb' -print | sort)
 mapfile -t rpms < <(find "$incoming" -maxdepth 1 -type f -name '*.rpm' -print | sort)
 mapfile -t archives < <(find "$incoming" -maxdepth 1 -type f -name '*.tar.gz' -print | sort)
+if [[ $tag == libvtex-v* ]]; then
+    expected_version="${tag#libvtex-v}-1"
+    if [[ ${#debs[@]} -ne 15 || ${#rpms[@]} -ne 15 || ${#archives[@]} -ne 0 ]]; then
+        echo "Expected 15 DEBs and 15 RPMs, and no tarballs, for $tag." >&2
+        exit 1
+    fi
+    declare -A expected_debs expected_rpms
+    for name in libbreadboard librtdsimulator libcomparator libdmm libmultifunction libscanner libsystem; do
+        expected_debs["vti-$name:amd64"]=1
+        expected_debs["vti-$name:i386"]=1
+    done
+    for name in libBreadboard libRTDSimulator libcomparator libdmm libmultifunction libscanner libsystem; do
+        expected_rpms["vti-$name:x86_64"]=1
+        expected_rpms["vti-$name:i686"]=1
+    done
+    expected_debs["vti-libvtex-common:all"]=1
+    expected_rpms["vti-libvtex-common:noarch"]=1
+    for package in "${debs[@]}"; do
+        name=$(dpkg-deb -f "$package" Package)
+        architecture=$(dpkg-deb -f "$package" Architecture)
+        version=$(dpkg-deb -f "$package" Version)
+        key="$name:$architecture"
+        if [[ $version != "$expected_version" || ${expected_debs[$key]:-} != 1 ]]; then
+            echo "Unexpected or duplicate DEB $key ($version): $package" >&2
+            exit 1
+        fi
+        unset 'expected_debs[$key]'
+    done
+    for package in "${rpms[@]}"; do
+        name=$(rpm -qp --qf '%{NAME}' "$package")
+        architecture=$(rpm -qp --qf '%{ARCH}' "$package")
+        version=$(rpm -qp --qf '%{VERSION}-%{RELEASE}' "$package")
+        key="$name:$architecture"
+        if [[ $version != "$expected_version" || ${expected_rpms[$key]:-} != 1 ]]; then
+            echo "Unexpected or duplicate RPM $key ($version): $package" >&2
+            exit 1
+        fi
+        unset 'expected_rpms[$key]'
+    done
+    if (( ${#expected_debs[@]} || ${#expected_rpms[@]} )); then
+        echo "Missing required libVTEX packages for $tag." >&2
+        exit 1
+    fi
+else
 if [[ ${#debs[@]} -ne 2 || ${#rpms[@]} -ne 2 || ${#archives[@]} -ne 1 ]]; then
     echo "Expected two DEBs, two RPMs, and one dual-architecture tarball for $tag." >&2
     exit 1
@@ -74,6 +118,7 @@ done
 if (( ! amd64_deb || ! i386_deb || ! x64_rpm || ! x86_rpm )); then
     echo "Release must contain one package for each supported architecture." >&2
     exit 1
+fi
 fi
 
 export GNUPGHOME="${RUNNER_TEMP:-${TMPDIR:-/tmp}}/vti-signing-${GITHUB_RUN_ID:-local}"
