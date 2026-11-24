@@ -5,8 +5,10 @@ Product source remains in its source repository; this repository contains
 only published package files, repository metadata, public signing keys, and
 the automation that publishes them.
 
-The repository includes VTEX10xxA PnP and libVTEX driver packages for
-amd64/i386 DEB and x86_64/i686 RPM systems.
+The repository includes VTEX10xxA PnP, libVTEX and VTI instrument driver
+packages. The instrument driver build 145 is available for amd64 and x86_64;
+its legacy 32-bit packages are signed release assets but not repository-indexed
+because they have incorrect architecture labels.
 
 ## Install
 
@@ -32,6 +34,8 @@ sudo apt install vtex10xxa-pnp
 
 For libVTEX, install a driver such as `sudo apt install vti-libscanner`.
 Its required `vti-libvtex-common` headers are installed automatically.
+For VTI instrument drivers, install a package such as `vti-libdsa`; its
+`vti-libcommon` dependency is installed automatically.
 
 APT verifies the signed repository metadata. The published DEB packages also
 carry `dpkg-sig` signatures. Install a 32-bit driver alongside the 64-bit
@@ -53,6 +57,7 @@ sudo dnf install vtex10xxa-pnp
 ```
 
 For libVTEX, install a driver such as `sudo dnf install vti-libscanner`.
+For VTI instrument drivers, install a package such as `vti-libdsa`.
 
 The RPM packages and repository metadata are signed and verified by DNF.
 Install the 32-bit variant alongside x86_64 with:
@@ -72,6 +77,9 @@ all supported systems.
 
 libVTEX packages are built on Ubuntu 22.04 and verified using Ubuntu and
 AlmaLinux 9 containers for both architectures.
+Compatibility of the instrument driver packages with specific distributions
+has not yet been established. Their 32-bit and 64-bit packages use the same
+installation paths and are not intended to be installed together.
 
 ## Publishing
 
@@ -99,6 +107,12 @@ and verifies the packages, then uploads them to a `libvtex-vMAJOR.MINOR.BUILD`
 draft release here. The namespaced tag prevents collisions with other products.
 The publishing workflow validates and signs the full libVTEX package set before
 updating the repositories. Prereleases and failed builds are not published.
+
+For instrument driver packages, upload the complete 32-bit and 64-bit DEB
+and RPM package set to a release tagged `spiderman-build-<build-number>`,
+then run the publishing workflow with that tag. All package versions must
+end in the build number. Legacy `x86` packages are signed as release assets,
+but excluded from repository indexes until rebuilt as `i386` and `i686`.
 
 Enable GitHub Pages for this repository from the `gh-pages` branch, root
 directory. Do not commit any private signing or GitHub App keys.

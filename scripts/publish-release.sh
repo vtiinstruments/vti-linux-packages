@@ -14,7 +14,7 @@ repo=${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}
 signing_key=${VTI_PACKAGE_SIGNING_KEY:?VTI_PACKAGE_SIGNING_KEY is required}
 passphrase=${VTI_PACKAGE_SIGNING_PASSPHRASE:?VTI_PACKAGE_SIGNING_PASSPHRASE is required}
 
-if [[ ! $tag =~ ^(v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+if [[ ! $tag =~ ^((v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+|spiderman-build-[0-9]+)$ ]]; then
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
@@ -28,7 +28,9 @@ done
 mapfile -t debs < <(find "$incoming" -maxdepth 1 -type f -name '*.deb' -print | sort)
 mapfile -t rpms < <(find "$incoming" -maxdepth 1 -type f -name '*.rpm' -print | sort)
 mapfile -t archives < <(find "$incoming" -maxdepth 1 -type f -name '*.tar.gz' -print | sort)
-if [[ $tag == libvtex-v* ]]; then
+if [[ $tag == spiderman-build-* ]]; then
+    bash "$(dirname "$0")/validate-spiderman.sh" "$tag" "$incoming"
+elif [[ $tag == libvtex-v* ]]; then
     expected_version="${tag#libvtex-v}-1"
     if [[ ${#debs[@]} -ne 15 || ${#rpms[@]} -ne 15 || ${#archives[@]} -ne 0 ]]; then
         echo "Expected 15 DEBs and 15 RPMs, and no tarballs, for $tag." >&2
@@ -162,7 +164,16 @@ for package in "${debs[@]}"; do
         dpkg-sig --sign builder -k "$key_id" "$package"
     fi
     dpkg-sig --verify-role builder "$package"
-    install -m 0644 "$package" "$site/pool/main/"
+    architecture=$(dpkg-deb -f "$package" Architecture)
+    if [[ $tag == spiderman-build-* && $architecture == x86 ]]; then
+        echo "Not indexing legacy x86 DEB: $package"
+    elif [[ $tag == spiderman-build-* ]]; then
+        name=$(dpkg-deb -f "$package" Package)
+        version=$(dpkg-deb -f "$package" Version)
+        install -m 0644 "$package" "$site/pool/main/${name}_${version}_${architecture}.deb"
+    else
+        install -m 0644 "$package" "$site/pool/main/"
+    fi
 done
 
 mkdir -p "$HOME/.config/rpm"
@@ -175,7 +186,12 @@ install -m 0644 "$site/public.key" "$site/RPM-GPG-KEY-VTI"
 sudo rpm --import "$site/RPM-GPG-KEY-VTI"
 for package in "${rpms[@]}"; do
     rpmkeys --checksig --verbose "$package"
-    install -m 0644 "$package" "$site/rpm/"
+    architecture=$(rpm -qp --qf '%{ARCH}' "$package")
+    if [[ $tag == spiderman-build-* && $architecture == x86 ]]; then
+        echo "Not indexing legacy x86 RPM: $package"
+    else
+        install -m 0644 "$package" "$site/rpm/"
+    fi
 done
 
 for archive in "${archives[@]}"; do

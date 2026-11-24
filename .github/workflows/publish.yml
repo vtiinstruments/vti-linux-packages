@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: Existing draft package release tag in the product repository
+        description: Existing package release tag in this repository
         required: true
         type: string
 
@@ -19,7 +19,8 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    # dpkg-sig is available in Ubuntu 22.04 but not 24.04.
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v7
         with:
@@ -37,16 +38,16 @@ jobs:
           else
             tag=$INPUT_TAG
           fi
-          if ! printf '%s' "$tag" | grep -Eq '^(v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "::error::Release tag must be a semantic version or libvtex-vMAJOR.MINOR.BUILD."
+          if ! printf '%s' "$tag" | grep -Eq '^((v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+|spiderman-build-[0-9]+)$'; then
+            echo "::error::Invalid package release tag."
             exit 1
           fi
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
       - name: Install repository tools
         run: |
           sudo apt-get update
-          sudo apt-get install --yes createrepo-c dpkg-dev dpkg-sig gnupg rpm
-      - name: Download draft release packages
+          sudo apt-get install --yes apt-utils createrepo-c dpkg-dev dpkg-sig gnupg rpm
+      - name: Download release packages
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ steps.release.outputs.tag }}
