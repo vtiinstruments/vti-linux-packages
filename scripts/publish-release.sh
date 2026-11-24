@@ -14,7 +14,7 @@ repo=${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}
 signing_key=${VTI_PACKAGE_SIGNING_KEY:?VTI_PACKAGE_SIGNING_KEY is required}
 passphrase=${VTI_PACKAGE_SIGNING_PASSPHRASE:?VTI_PACKAGE_SIGNING_PASSPHRASE is required}
 
-if [[ ! $tag =~ ^((v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+|spiderman-build-[0-9]+)$ ]]; then
+if [[ ! $tag =~ ^((v?|libvtex-v|discovery-tool-v)[0-9]+\.[0-9]+\.[0-9]+|spiderman-build-[0-9]+)$ ]]; then
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
@@ -30,6 +30,8 @@ mapfile -t rpms < <(find "$incoming" -maxdepth 1 -type f -name '*.rpm' -print | 
 mapfile -t archives < <(find "$incoming" -maxdepth 1 -type f -name '*.tar.gz' -print | sort)
 if [[ $tag == spiderman-build-* ]]; then
     bash "$(dirname "$0")/validate-spiderman.sh" "$tag" "$incoming"
+elif [[ $tag == discovery-tool-v* ]]; then
+    bash "$(dirname "$0")/validate-discovery-tool.sh" "$tag" "$incoming"
 elif [[ $tag == libvtex-v* ]]; then
     expected_version="${tag#libvtex-v}-1"
     if [[ ${#debs[@]} -ne 15 || ${#rpms[@]} -ne 15 || ${#archives[@]} -ne 0 ]]; then

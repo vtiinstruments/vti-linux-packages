@@ -36,6 +36,7 @@ For libVTEX, install a driver such as `sudo apt install vti-libscanner`.
 Its required `vti-libvtex-common` headers are installed automatically.
 For VTI instrument drivers, install a package such as `vti-libdsa`; its
 `vti-libcommon` dependency is installed automatically.
+For Discovery Tool, install `discovery-tool` (amd64 only).
 
 APT verifies the signed repository metadata. The published DEB packages also
 carry `dpkg-sig` signatures. Install a 32-bit driver alongside the 64-bit
@@ -58,6 +59,7 @@ sudo dnf install vtex10xxa-pnp
 
 For libVTEX, install a driver such as `sudo dnf install vti-libscanner`.
 For VTI instrument drivers, install a package such as `vti-libdsa`.
+For Discovery Tool, install `discovery-tool` (x86_64 only).
 
 The RPM packages and repository metadata are signed and verified by DNF.
 Install the 32-bit variant alongside x86_64 with:
@@ -107,6 +109,13 @@ and verifies the packages, then uploads them to a `libvtex-vMAJOR.MINOR.BUILD`
 draft release here. The namespaced tag prevents collisions with other products.
 The publishing workflow validates and signs the full libVTEX package set before
 updating the repositories. Prereleases and failed builds are not published.
+
+The Discovery Tool source repository uses the same App secrets. It uploads
+one amd64 DEB and one x86_64 RPM to a draft release tagged
+`discovery-tool-vMAJOR.MINOR.PATCH` and dispatches publication. Both package
+names must be `discovery-tool` and both versions must match the tag with
+release `1`. The publisher validates and signs the packages and repository
+metadata before publishing.
 
 For instrument driver packages, upload the complete 32-bit and 64-bit DEB
 and RPM package set to a release tagged `spiderman-build-<build-number>`,
