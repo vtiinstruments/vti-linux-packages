@@ -186,7 +186,7 @@ mkdir -p "$rpmdb"
 rpm --dbpath "$rpmdb" --import "$site/RPM-GPG-KEY-VTI"
 for package in "${rpms[@]}"; do
     rpmkeys --dbpath "$rpmdb" --checksig --verbose "$package"
-    architecture=$(rpm -qp --qf '%{ARCH}' "$package")
+    architecture=$(rpm --dbpath "$rpmdb" -qp --qf '%{ARCH}' "$package")
     if [[ $tag == spiderman-build-* && $architecture == x86 ]]; then
         echo "Not indexing legacy x86 RPM: $package"
     else
