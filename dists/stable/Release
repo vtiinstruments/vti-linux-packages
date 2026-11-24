@@ -1,0 +1,32 @@
+Architectures: amd64 i386
+Codename: stable
+Components: main
+Date: Tue, 24 Nov 2026 16:46:45 +0000
+Description: Signed VTI Instruments Linux packages
+Label: VTI Linux Packages
+Origin: VTI Instruments
+Suite: stable
+MD5Sum:
+ d6bd3e4382dfa1a678cca84a3c615d1e              213 Release
+ b721c28f2a0e847cbca8e120bf6dcce5             4003 main/binary-amd64/Packages
+ 273ccd9b85f9da3f5dad5c5bafefa6a2             1214 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e                0 main/binary-i386/Packages
+ 4a4dd3598707603b3f76a2378a4504aa               20 main/binary-i386/Packages.gz
+SHA1:
+ 0abc83a96257b26479cccd4b84c9f94cf601457c              213 Release
+ 47130fbe0554726c1b481180e7cc02f1437c3d3c             4003 main/binary-amd64/Packages
+ df7f7ef76c42da52246ab561e06e01224e514bce             1214 main/binary-amd64/Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709                0 main/binary-i386/Packages
+ a0fddd5458378c1bf3c10dd2f5c060d1347741ed               20 main/binary-i386/Packages.gz
+SHA256:
+ 14f4988f5fe00386b68a20e938dbeb8a0ae4d75415825e8245c9eb73ae1797bb              213 Release
+ 4a0328e215768b2428909fe6f7619afa31cf7d9d50b2c3c16a365db89d7b679d             4003 main/binary-amd64/Packages
+ 54d74b449a097ef3d6199509dff5e48fdf8af6dc5de70895ea9d53a1844ae6f6             1214 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855                0 main/binary-i386/Packages
+ f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec               20 main/binary-i386/Packages.gz
+SHA512:
+ 55c5068bdf181d940f4407980cb055e29c6431c78004405a44e406642f900a1c8abbcdff65a252621d918ee066d85fd530b5df2cec1d5be9797abd8064cf044f              213 Release
+ 51f134a735ebeb601ec2286c423c4899cda884fe918b3c2aaa0bdcd24e23ddfd94aa50ad9a6a42f779ad729333160a68cfe838989d5c5779498415f15b2175cf             4003 main/binary-amd64/Packages
+ a91e3d0ba307eff381940c06eef73f81f1bf0fce4cdfb601c9eff60e7ab47d0e00449e82d6d6cb8b3fb744ff0abafb512e814a1449e416e34eafb5dd56a54b25             1214 main/binary-amd64/Packages.gz
+ cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e                0 main/binary-i386/Packages
+ 1b46b9b08d5b338be9d732a1724795b2eab63daffde377218727c90857b79fe6a47bceed495117fcde60f7339812ef75ef4c69f82dd79fb69b6cbf8006b521f2               20 main/binary-i386/Packages.gz
