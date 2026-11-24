@@ -176,10 +176,8 @@ for package in "${debs[@]}"; do
     fi
 done
 
-mkdir -p "$HOME/.config/rpm"
-printf '%%_signature gpg\n%%_gpg_name %s\n%%_gpg_path %s\n' "$key_id" "$GNUPGHOME" \
-    > "$HOME/.config/rpm/macros"
-rpmsign --addsign "${rpms[@]}"
+rpmsign --define "_signature gpg" --define "_gpg_name $key_id" \
+    --define "_gpg_path $GNUPGHOME" --addsign "${rpms[@]}"
 
 gpg --batch --armor --export "$key_id" > "$site/public.key"
 install -m 0644 "$site/public.key" "$site/RPM-GPG-KEY-VTI"
