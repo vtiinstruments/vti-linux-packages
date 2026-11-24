@@ -18,7 +18,7 @@ if [[ ! $tag =~ ^((v?|libvtex-v)[0-9]+\.[0-9]+\.[0-9]+|spiderman-build-[0-9]+)$ 
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
-for tool in apt-ftparchive createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys sudo; do
+for tool in apt-ftparchive createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys; do
     command -v "$tool" >/dev/null || {
         echo "Required publishing tool missing: $tool" >&2
         exit 1
@@ -181,9 +181,11 @@ rpmsign --define "_signature gpg" --define "_gpg_name $key_id" \
 
 gpg --batch --armor --export "$key_id" > "$site/public.key"
 install -m 0644 "$site/public.key" "$site/RPM-GPG-KEY-VTI"
-sudo rpm --import "$site/RPM-GPG-KEY-VTI"
+rpmdb="${RUNNER_TEMP:-${TMPDIR:-/tmp}}/vti-rpmdb-${GITHUB_RUN_ID:-local}"
+mkdir -p "$rpmdb"
+rpm --dbpath "$rpmdb" --import "$site/RPM-GPG-KEY-VTI"
 for package in "${rpms[@]}"; do
-    rpmkeys --checksig --verbose "$package"
+    rpmkeys --dbpath "$rpmdb" --checksig --verbose "$package"
     architecture=$(rpm -qp --qf '%{ARCH}' "$package")
     if [[ $tag == spiderman-build-* && $architecture == x86 ]]; then
         echo "Not indexing legacy x86 RPM: $package"
