@@ -67,6 +67,10 @@ Normal `apt upgrade` and `dnf upgrade` operations install later releases.
 
 ## Compatibility
 
+New Linux x86 packages target the AVX instruction set; CPUs without AVX are
+unsupported. The `i386` and `i686` labels identify the 32-bit package ABI and
+do not imply compatibility with CPUs that lack AVX.
+
 The VTEX10xxA PnP driver packages are built on Debian 12 and target Ubuntu 22.04/24.04,
 Debian 12, RHEL/Rocky/AlmaLinux 9, and current Fedora releases. The Linux
 Tauri front panel is not included because WebKitGTK 4.1 is not available on
