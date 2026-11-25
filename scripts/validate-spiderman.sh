@@ -42,7 +42,7 @@ for package in "${debs[@]}"; do
     version=$(dpkg-deb -f "$package" Version)
     case "$architecture" in
         amd64) kind=deb64 ;;
-        i386|x86) kind=deb32 ;;
+        i386) kind=deb32 ;;
         *) echo "Unexpected DEB architecture: $architecture" >&2; exit 1 ;;
     esac
     record "$name" "$kind" "$version"
@@ -55,7 +55,7 @@ for package in "${rpms[@]}"; do
     [[ $release == 1 ]] || { echo "Unexpected RPM release: $release" >&2; exit 1; }
     case "$architecture" in
         x86_64) kind=rpm64 ;;
-        i686|x86) kind=rpm32 ;;
+        i686) kind=rpm32 ;;
         *) echo "Unexpected RPM architecture: $architecture" >&2; exit 1 ;;
     esac
     record "$name" "$kind" "$version"
