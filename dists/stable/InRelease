@@ -4,48 +4,44 @@ Hash: SHA512
 Architectures: amd64 i386
 Codename: stable
 Components: main
-Date: Tue, 24 Nov 2026 16:48:35 +0000
+Date: Wed, 25 Nov 2026 04:28:33 +0000
 Description: Signed VTI Instruments Linux packages
 Label: VTI Linux Packages
 Origin: VTI Instruments
 Suite: stable
 MD5Sum:
- 38e4473aedb2e1dcbd653f9eadba8e9f              213 Release
- 733479fd283d1bbe8d5328e12423a438             8395 main/binary-amd64/Packages
- b3143ab6ff6162399dcd349001854bb8             2282 main/binary-amd64/Packages.gz
- 4ee04c7fa53790ed4f4bdb8f01cdb70b             4378 main/binary-i386/Packages
- 6fce3782ec38f51be6f72273b3238687             1324 main/binary-i386/Packages.gz
+ 30bdd7408df320dc7b619d5f17d0a0df             8395 main/binary-amd64/Packages
+ 9d9f8b771ae1b45175258b0b367d059c             2283 main/binary-amd64/Packages.gz
+ 365df82490d7732047a1f10cd30bfdd4             4378 main/binary-i386/Packages
+ 14245ea7d218de6c03bba56169c002e6             1324 main/binary-i386/Packages.gz
 SHA1:
- e0f2bd82a0f7aabe66ef35f8f7d99f0dfd6cfad8              213 Release
- 055dea9fd189088cd9f4498c282ed03bfc7655c6             8395 main/binary-amd64/Packages
- 6fb46142081781df98085e42ad9cc55ccc3bfbf6             2282 main/binary-amd64/Packages.gz
- 834ea7e800511c0f85c3ef5674eed0187c6de86f             4378 main/binary-i386/Packages
- 7b03bf8b8dc9392f5057019bb80b209c168d42f4             1324 main/binary-i386/Packages.gz
+ 8c93f861a8e429078ac09b1095e3bc1147b96d86             8395 main/binary-amd64/Packages
+ 7e1016afa0a0c20a56bd635f3c32f039b18dc944             2283 main/binary-amd64/Packages.gz
+ 99a247e67b307f1c62c4e702a2a76b86195aa9e8             4378 main/binary-i386/Packages
+ e534d8df61ac972c7cc6bf074517ca75ec81408b             1324 main/binary-i386/Packages.gz
 SHA256:
- 3ec90c5e8e252791e57aaa3a65b3c8b1ae65763aa5e450ecfc97bfe7362af4a2              213 Release
- 0babcfdfb29749533a859229e7039cdcb234b42148fdcf43b527032fec95baa5             8395 main/binary-amd64/Packages
- da2be8fe58b0d718d601cfcbe4cd9f3ec0e415c898f2f09ec205b3b1860be9a4             2282 main/binary-amd64/Packages.gz
- 0263a81d904cd9841949eb80dbc7d903799e4af8a6c29a87adf32a0dac987cac             4378 main/binary-i386/Packages
- af3486cf8c43ab41737e8e553c5c14cfb3acfe0779c395450facdb7724d9f3d7             1324 main/binary-i386/Packages.gz
+ e5b8fcc4554b0f450cebf8fbad5cca0a7a7ea890427fdaaebdad6ca08c547d4c             8395 main/binary-amd64/Packages
+ 104fb12d377e5d951a0a34eb9252bf47414c2731a32f73e3dbde470d65c7404f             2283 main/binary-amd64/Packages.gz
+ 9517d7e41c28833e60ec967289d9e2bf19d00153bc33df414248462c39afb825             4378 main/binary-i386/Packages
+ c590e592f1286afd53d2632a9c2d7f7521e499845996183d4ae125e1d179c021             1324 main/binary-i386/Packages.gz
 SHA512:
- 728b9507c7bddec2e9da5fd89d7501e0b58d489f1414b543b682271bbf41edcfb4c7a5186419057cf99263ce4f8e065bb0ea077a24ef2282feb519b9a6ec50b5              213 Release
- 94d7b5877aa5ae99e7e58da01622e1045c5b99bb52565e57bd8bdea5268e356ec691b6d087a62bb7ce9d3ef7ad61adde5d68ef2c4af26c518f94e133263f8d63             8395 main/binary-amd64/Packages
- 739011757be7099585073f834514bd69d181057000ccf362593d46b7e7619208953c7cbd52f71287d706e369b6af3eab39dae12887788b258a954e179c429d78             2282 main/binary-amd64/Packages.gz
- 94448e8d4e765e8b1b5bd23a00c1564d46c977eea10bdffca7071276675fd26dbe8c52b341ff5004e6cb525fd55e48593cf37b31d7054a42bcdb080c72b8dab3             4378 main/binary-i386/Packages
- b7415d819cb0a99833c21fe447cae47d81ea4c5fd3781671967c845ec091fc68d345aebe33294b4e47fe26e6f48f4c9379bb57c91e62e0c601c914db62bb1b23             1324 main/binary-i386/Packages.gz
+ 82279e4d58144aa92015c21aa7ea3fcff18284d48bd7265b79d205cb34f086a6ef8e549a67fc9d1046fa8b5b4e63ef4f481d01280fc446c1081c1953c391b272             8395 main/binary-amd64/Packages
+ dff8ba1b6e5ec696af1502d8b5e8fa7ac217f793e76be5ddfc27c9028b994c520213456e96a8c4fb5ab8992eb54cd457c2085907c4b1c4e6b08f5c94a6e7a7da             2283 main/binary-amd64/Packages.gz
+ efe6e5c213b5af11600754d97af15380787a388aeacba8613775578ffbdab07ca2c3221d203871f38fe348a33dce8ec63d27bde5a24b9839e6eb8d69fa1de7b5             4378 main/binary-i386/Packages
+ f6cb486bf3cd80ed4f3cb578266db635b1ee41f0c250fac39d22bdc54b917c31ad097b291711b93f88a726a7232005e8468f70a45812ee31f94ab9a0a2f735cb             1324 main/binary-i386/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEh4HIpyL96JUOdrO5GPpHpKsXCG0FAmsFv+MACgkQGPpHpKsX
-CG0fhw/9Gd3hpnyhrzAOCZ8gmE+QSlEBtA660sg3A7EJpPNDHwdUcI9UKRxlVKrE
-0u3uGPosHn/pbaBc6Gpp2Bl0V1X1nkTqVinFFRQswiJZPmip/t5udmWq/wnllVVy
-uVpggr+KnWIVF/SThTf+xChfUa/H5E6hzPmrjZGookyc3JyKb9YAKSIIERJVnnWV
-V7Yf+vyY6m02489Ww6rc5JNj6CJcGh7Q3vXVj+i4pDXCEPNWN8XjHKVtW508Osae
-6vf1RU9BPgr191N7BloL+HP+TKC2E4D8xMeHsqztdH+Yfs5ymiFRtDfY5aT6Zgl3
-szJqSo+V9u8M+OsDzOHsMQd3sE+WgHNtFY+I3nUisRqrKXUCuAIqj6wCLyAtfSy3
-nNSpZ1Y6qCHr9yYnhnxob7O0elHSJ9hHnxK9zNDyGMZLre7d+J2Kphs6T9ge85nk
-5irOCMTc/A03CppqNAG3hqcxCqeSWoa9DGfl/lXhKryOAKQE3hkztop+MvCfolIj
-Qyw1JNkTWSFmncovY/B6ED1Yj+7CZrKssFRLFl2irTLTrV/cp9kY/aEb0QQtqXQ0
-hcP3HVvXvQFErfMN+Y+kuggZiTnpnErRMST8ueW2Cmj415kWT481hlPARxyWGC4I
-W8ABPRR27UsVJCzhcwq99Hz4KsJA0ZtgUucMLYBEfJRvJo6gFjI=
-=gsPE
+iQIzBAEBCgAdFiEE40jeqr0S2EWw6amW46jf9UI8NX8FAmsGY/EACgkQ46jf9UI8
+NX/luBAArP+a6rXpqDAZykPvCgJNGInvfuSXO37mUb+VZq/Jgt7JVxlKOcI6NyYs
+uFmTsSwf2awvS1JYrEO41k/hJnBBbNKkrf+/PJnHdnzY0+xOPlJF9mTrRMJhV2qz
+W8eGBKH16kpwzkY4DpPE2JsFIvRuStWlez5Wlut3Z0Lx08dhUqjOojdJk5yDQ912
+ELFIXlmldrJhSGrhXSolO4kBA5D30aJzIRhw19+n2E7Wv58QG2d/lj7W4a0877io
+Rdb+Mg1JwNO28lX46nnbDWmdkKK1HL8dGrIFo4+BzszE40gXvA3pVLsqoa9akE2j
+dkSBH9UWcs7x9rEH7RSOjLcEndPc4PnovosQHvA9G/HNlxwJ9fujRNjvWBudKHtm
+dGtW609R5ydJlA2BQ3eS+fvNyQaDWfA53Iq68qm8v+GbIRHHnCtqH82QWsfIXaAI
+15LezcnWZuO2D+qdQEvPXL531h9r8HYzr4SFxFrd3yuBEYSwsKeiNuupRVM6CzVQ
+AubRyYxZFpCdlF1oJX6wE+TKa/iyiqPRn5MnHKwyg3RfFjfKmLBxwyZKipJ7CCTr
+LtLrof3/z3GXIe8dQmjiNdVBE8HmE0zxZio1hjWIxF/pxfItKgvR18owacrePN3s
+33CQtlv7/OIkZfm+0Q1jwTwqK8xpWdyhI1xD2gYXhONk9wCB7ko=
+=fFuZ
 -----END PGP SIGNATURE-----
