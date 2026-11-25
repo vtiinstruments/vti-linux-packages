@@ -1,13 +1,11 @@
 # VTI Linux package repository
 
-This public GitHub Pages repository distributes signed VTI Linux packages.
-Product source remains in its source repository; this repository contains
-only published package files, repository metadata, public signing keys, and
-the automation that publishes them.
+This public GitHub Pages repository provides VTI Linux packages for
+installation through APT and DNF.
 
 The repository includes VTEX10xxA PnP, libVTEX and VTI instrument driver
 packages. The instrument driver build 145 is available for amd64 and x86_64;
-its legacy 32-bit packages are signed release assets but not repository-indexed
+its legacy 32-bit packages are release assets but not repository-indexed
 because they have incorrect architecture labels.
 
 ## Install
@@ -38,9 +36,7 @@ For VTI instrument drivers, install a package such as `vti-libdsa`; its
 `vti-libcommon` dependency is installed automatically.
 For Discovery Tool, install `discovery-tool` (amd64 only).
 
-APT verifies the signed repository metadata. The published DEB packages also
-carry `dpkg-sig` signatures. Install a 32-bit driver alongside the 64-bit
-driver with:
+Install a 32-bit driver alongside the 64-bit driver with:
 
 ```sh
 sudo apt install vtex10xxa-pnp:i386
@@ -61,7 +57,6 @@ For libVTEX, install a driver such as `sudo dnf install vti-libscanner`.
 For VTI instrument drivers, install a package such as `vti-libdsa`.
 For Discovery Tool, install `discovery-tool` (x86_64 only).
 
-The RPM packages and repository metadata are signed and verified by DNF.
 Install the 32-bit variant alongside x86_64 with:
 
 ```sh
@@ -82,46 +77,3 @@ AlmaLinux 9 containers for both architectures.
 Compatibility of the instrument driver packages with specific distributions
 has not yet been established. Their 32-bit and 64-bit packages use the same
 installation paths and are not intended to be installed together.
-
-## Publishing
-
-The private product repository builds packages on a version-tag push or a
-manual workflow dispatch, then uploads them to a draft release here. This
-repository signs the packages and repository metadata, updates the GitHub
-Pages branch, and publishes the release only after those steps succeed.
-
-Configure these Actions secrets in this repository before the first publish:
-
-- `VTI_PACKAGE_SIGNING_KEY`: ASCII-armored private GPG key.
-- `VTI_PACKAGE_SIGNING_PASSPHRASE`: its passphrase.
-
-Configure these secrets in the private `VTEX10xxA-PnP-Driver` source
-repository. The GitHub App must be installed on `vti-ppa` with repository
-Contents write permission; the workflow creates a short-lived installation
-token for each release:
-
-- `VTI_PPA_APP_ID`: the GitHub App ID.
-- `VTI_PPA_APP_PRIVATE_KEY`: the GitHub App private key in PEM format.
-
-The private `nextgen-libVTEX` source repository uses the same App secrets.
-Publishing a non-prerelease GitHub release tagged `vMAJOR.MINOR.BUILD` builds
-and verifies the packages, then uploads them to a `libvtex-vMAJOR.MINOR.BUILD`
-draft release here. The namespaced tag prevents collisions with other products.
-The publishing workflow validates and signs the full libVTEX package set before
-updating the repositories. Prereleases and failed builds are not published.
-
-The Discovery Tool source repository uses the same App secrets. It uploads
-one amd64 DEB and one x86_64 RPM to a draft release tagged
-`discovery-tool-vMAJOR.MINOR.PATCH` and dispatches publication. Both package
-names must be `discovery-tool` and both versions must match the tag with
-release `1`. The publisher validates and signs the packages and repository
-metadata before publishing.
-
-For instrument driver packages, upload the complete 32-bit and 64-bit DEB
-and RPM package set to a release tagged `spiderman-build-<build-number>`,
-then run the publishing workflow with that tag. All package versions must
-end in the build number. Legacy `x86` packages are signed as release assets,
-but excluded from repository indexes until rebuilt as `i386` and `i686`.
-
-Enable GitHub Pages for this repository from the `gh-pages` branch, root
-directory. Do not commit any private signing or GitHub App keys.
