@@ -27,6 +27,8 @@ jobs:
           persist-credentials: false
       - name: Test Discovery Tool package validation
         run: bash tests/validate-discovery-tool.sh
+      - name: Test Spiderman package validation
+        run: bash tests/validate-spiderman.sh
       - name: Determine release tag
         id: release
         env:
@@ -58,6 +60,7 @@ jobs:
           gh release download "$RELEASE_TAG" \
             --pattern '*.deb' \
             --pattern '*.rpm' \
+            --pattern '*.ipk' \
             --pattern '*.tar.gz' \
             --dir "$RUNNER_TEMP/incoming"
       - name: Sign packages and publish repository metadata

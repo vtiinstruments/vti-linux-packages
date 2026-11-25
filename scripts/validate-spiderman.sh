@@ -9,9 +9,11 @@ build_number=${BASH_REMATCH[1]}
 incoming=$2
 mapfile -t debs < <(find "$incoming" -maxdepth 1 -type f -name '*.deb' -print | sort)
 mapfile -t rpms < <(find "$incoming" -maxdepth 1 -type f -name '*.rpm' -print | sort)
+mapfile -t ipks < <(find "$incoming" -maxdepth 1 -type f -name '*.ipk' -print | sort)
 mapfile -t archives < <(find "$incoming" -maxdepth 1 -type f -name '*.tar.gz' -print | sort)
-if [[ ${#debs[@]} -ne 14 || ${#rpms[@]} -ne 14 || ${#archives[@]} -ne 0 ]]; then
-    echo "Expected 14 DEBs, 14 RPMs, and no tarballs." >&2
+if [[ ${#debs[@]} -ne 14 || ${#rpms[@]} -ne 14 ||
+      ( ${#ipks[@]} -ne 3 && ${#ipks[@]} -ne 6 ) || ${#archives[@]} -ne 0 ]]; then
+    echo "Expected 14 DEBs, 14 RPMs, 3 or 6 NI RT IPKs, and no tarballs." >&2
     exit 1
 fi
 
@@ -62,6 +64,43 @@ for package in "${rpms[@]}"; do
 done
 if (( ${#expected[@]} )); then
     echo "Missing required Spiderman packages." >&2
+    exit 1
+fi
+
+declare -A expected_ipks versions_ipk
+for arch in x64; do
+    for name in commonrt dsart platformrt; do
+        expected_ipks["vti-lib${name}:$arch"]=1
+    done
+done
+if (( ${#ipks[@]} == 6 )); then
+    for name in commonrt dsart platformrt; do
+        expected_ipks["vti-lib${name}:arm"]=1
+    done
+fi
+
+for package in "${ipks[@]}"; do
+    control=$(ar p "$package" control.tar.gz | tar -xzOf - ./control) || {
+        echo "Cannot read NI RT package control data: $package" >&2
+        exit 1
+    }
+    name=$(awk -F ': ' '$1 == "Package" { print $2; exit }' <<< "$control")
+    version=$(awk -F ': ' '$1 == "Version" { print $2; exit }' <<< "$control")
+    architecture=$(awk -F ': ' '$1 == "Architecture" { print $2; exit }' <<< "$control")
+    key="$name:$architecture"
+    if [[ ${expected_ipks[$key]:-} != 1 || $version != *".$build_number" ]]; then
+        echo "Unexpected or duplicate NI RT package: $key ($version)" >&2
+        exit 1
+    fi
+    unset 'expected_ipks[$key]'
+    if [[ ${versions_ipk[$name]+present} && ${versions_ipk[$name]} != "$version" ]]; then
+        echo "Inconsistent NI RT versions for $name" >&2
+        exit 1
+    fi
+    versions_ipk[$name]=$version
+done
+if (( ${#expected_ipks[@]} )); then
+    echo "Missing required NI RT packages." >&2
     exit 1
 fi
 echo "Validated Spiderman package set for build $build_number."

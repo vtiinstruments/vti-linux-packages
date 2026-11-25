@@ -53,6 +53,18 @@ Pick the package name for your instrument from the table below. Package names ar
 
 > **Note:** `vtex10xxa-pnp` (EX10xxA / EX10xxB) and `discovery-tool` (64-bit only) are not published in this repository yet.
 
+### NI Linux Real-Time
+
+NI Linux Real-Time `.ipk` packages for `libDsaRT` and `libPlatformRT` are attached to the matching `spiderman-build-*` release in [GitHub Releases](https://github.com/vtiinstruments/vti-linux-packages/releases). Download the package set for the target's architecture (`x64` or `arm`); the shared `libcommonrt` package is included. These packages are distributed as release assets and are not part of the APT or RPM repositories.
+
+On the NI RT target, install the downloaded packages with `opkg`, for example:
+
+```sh
+opkg install ./72-0353-600_vti-libcommonrt_<common-version>_x64.ipk \
+  ./72-0368-500_vti-libdsart_<dsa-version>_x64.ipk \
+  ./72-0377-600_vti-libplatformrt_<platform-version>_x64.ipk
+```
+
 ---
 
 ## 3. Install packages

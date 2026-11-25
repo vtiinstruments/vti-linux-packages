@@ -18,7 +18,7 @@ if [[ ! $tag =~ ^((v?|libvtex-v|discovery-tool-v)[0-9]+\.[0-9]+\.[0-9]+|spiderma
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
-for tool in apt-ftparchive ar createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys; do
+for tool in apt-ftparchive ar createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys tar; do
     command -v "$tool" >/dev/null || {
         echo "Required publishing tool missing: $tool" >&2
         exit 1
@@ -27,7 +27,12 @@ done
 
 mapfile -t debs < <(find "$incoming" -maxdepth 1 -type f -name '*.deb' -print | sort)
 mapfile -t rpms < <(find "$incoming" -maxdepth 1 -type f -name '*.rpm' -print | sort)
+mapfile -t ipks < <(find "$incoming" -maxdepth 1 -type f -name '*.ipk' -print | sort)
 mapfile -t archives < <(find "$incoming" -maxdepth 1 -type f -name '*.tar.gz' -print | sort)
+if [[ $tag != spiderman-build-* && ${#ipks[@]} -ne 0 ]]; then
+    echo "NI RT IPKs are only valid for Spiderman build releases." >&2
+    exit 1
+fi
 if [[ $tag == spiderman-build-* ]]; then
     bash "$(dirname "$0")/validate-spiderman.sh" "$tag" "$incoming"
 elif [[ $tag == discovery-tool-v* ]]; then
@@ -235,11 +240,11 @@ createrepo_c --database --update rpm
 gpg --batch --yes --local-user "$key_id" --armor --detach-sign \
     --output rpm/repodata/repomd.xml.asc rpm/repodata/repomd.xml
 
-signed_assets=("${debs[@]}" "${rpms[@]}" "${archives[@]}")
+release_assets=("${debs[@]}" "${rpms[@]}" "${ipks[@]}" "${archives[@]}")
 for archive in "${archives[@]}"; do
-    signed_assets+=("$archive.asc")
+    release_assets+=("$archive.asc")
 done
-gh release upload "$tag" "${signed_assets[@]}" --clobber --repo "$repo"
+gh release upload "$tag" "${release_assets[@]}" --clobber --repo "$repo"
 
 git add -A
 git commit -m "Publish Linux packages for $tag"
