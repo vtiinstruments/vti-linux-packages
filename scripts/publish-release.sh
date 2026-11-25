@@ -18,7 +18,7 @@ if [[ ! $tag =~ ^((v?|libvtex-v|discovery-tool-v)[0-9]+\.[0-9]+\.[0-9]+|spiderma
     echo "Invalid release tag: $tag" >&2
     exit 1
 fi
-for tool in apt-ftparchive createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys; do
+for tool in apt-ftparchive ar createrepo_c dpkg-deb dpkg-scanpackages dpkg-sig gpg gh git rpm rpmsign rpmkeys; do
     command -v "$tool" >/dev/null || {
         echo "Required publishing tool missing: $tool" >&2
         exit 1
@@ -163,6 +163,10 @@ mkdir -p "$site/pool/main" "$site/rpm" \
 
 for package in "${debs[@]}"; do
     if ! dpkg-sig --verify-role builder "$package" >/dev/null 2>&1; then
+        mapfile -t signatures < <(ar t "$package" | awk '/^_gpgbuilder[0-9]*$/')
+        if (( ${#signatures[@]} )); then
+            ar d "$package" "${signatures[@]}"
+        fi
         dpkg-sig --sign builder -k "$key_id" "$package"
     fi
     dpkg-sig --verify-role builder "$package"
@@ -178,7 +182,7 @@ for package in "${debs[@]}"; do
     fi
 done
 
-rpmsign --define "_signature gpg" --define "_gpg_name $key_id" \
+rpmsign --define "__gpg $(command -v gpg)" --define "_signature gpg" --define "_gpg_name $key_id" \
     --define "_gpg_path $GNUPGHOME" --addsign "${rpms[@]}"
 
 gpg --batch --armor --export "$key_id" > "$site/public.key"
@@ -219,7 +223,9 @@ for architecture in amd64 i386; do
     dpkg-scanpackages --arch "$architecture" --multiversion pool/main /dev/null > "$index"
     gzip --no-name --best --stdout "$index" > "$index.gz"
 done
-apt-ftparchive -c apt-ftparchive.conf release dists/stable > dists/stable/Release
+rm -f dists/stable/Release
+apt-ftparchive -c apt-ftparchive.conf release dists/stable > Release.new
+mv Release.new dists/stable/Release
 gpg --batch --yes --local-user "$key_id" --armor --clearsign \
     --output dists/stable/InRelease dists/stable/Release
 gpg --batch --yes --local-user "$key_id" --armor --detach-sign \

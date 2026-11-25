@@ -65,6 +65,31 @@ sudo dnf install vtex10xxa-pnp.i686
 
 Normal `apt upgrade` and `dnf upgrade` operations install later releases.
 
+## Refresh the repository key
+
+The repository key was rotated on November 25, 2026. Existing installations
+must import the new public key before updating packages. Its fingerprint is:
+
+```text
+E348 DEAA BD12 D845 B0E9 A996 E3A8 DFF5 423C 357F
+```
+
+On Ubuntu and Debian, replace the dedicated VTI keyring:
+
+```sh
+curl -fsSL https://vtiinstruments.github.io/vti-linux-packages/public.key \
+  | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/vti-archive-keyring.gpg
+sudo apt update
+```
+
+On RPM-based distributions, import the new key and refresh metadata:
+
+```sh
+sudo rpm --import https://vtiinstruments.github.io/vti-linux-packages/RPM-GPG-KEY-VTI
+sudo dnf clean metadata
+sudo dnf makecache
+```
+
 ## Compatibility
 
 New Linux x86 packages target the AVX instruction set; CPUs without AVX are
