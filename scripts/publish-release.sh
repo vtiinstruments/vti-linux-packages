@@ -206,11 +206,11 @@ install -m 0644 packaging/apt-ftparchive.conf "$site/apt-ftparchive.conf"
 cat > "$site/vti.repo" <<'REPO'
 [vti]
 name=VTI Instruments Linux Packages
-baseurl=https://vtiinstruments.github.io/vti-ppa/rpm/
+baseurl=https://vtiinstruments.github.io/vti-linux-packages/rpm/
 enabled=1
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=https://vtiinstruments.github.io/vti-ppa/RPM-GPG-KEY-VTI
+gpgkey=https://vtiinstruments.github.io/vti-linux-packages/RPM-GPG-KEY-VTI
 REPO
 
 cd "$site"

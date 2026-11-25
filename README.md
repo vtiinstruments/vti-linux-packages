@@ -22,9 +22,9 @@ sudo apt update
 Install the repository key and source:
 
 ```sh
-curl -fsSL https://vtiinstruments.github.io/vti-ppa/public.key \
+curl -fsSL https://vtiinstruments.github.io/vti-linux-packages/public.key \
   | sudo gpg --dearmor -o /usr/share/keyrings/vti-archive-keyring.gpg
-echo "deb [arch=amd64,i386 signed-by=/usr/share/keyrings/vti-archive-keyring.gpg] https://vtiinstruments.github.io/vti-ppa stable main" \
+echo "deb [arch=amd64,i386 signed-by=/usr/share/keyrings/vti-archive-keyring.gpg] https://vtiinstruments.github.io/vti-linux-packages stable main" \
   | sudo tee /etc/apt/sources.list.d/vti.list
 sudo apt update
 sudo apt install vtex10xxa-pnp
@@ -47,8 +47,8 @@ sudo apt install vtex10xxa-pnp:i386
 Import the package-signing key and configure the repository:
 
 ```sh
-sudo rpm --import https://vtiinstruments.github.io/vti-ppa/RPM-GPG-KEY-VTI
-sudo curl -fsSL https://vtiinstruments.github.io/vti-ppa/vti.repo \
+sudo rpm --import https://vtiinstruments.github.io/vti-linux-packages/RPM-GPG-KEY-VTI
+sudo curl -fsSL https://vtiinstruments.github.io/vti-linux-packages/vti.repo \
   -o /etc/yum.repos.d/vti.repo
 sudo dnf install vtex10xxa-pnp
 ```
